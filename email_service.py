@@ -1,12 +1,15 @@
-import smtplib
-import ssl
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 import os
 from typing import Optional
 import logging
+import resend
 
 logger = logging.getLogger(__name__)
+
+resend.api_key = os.environ.get("RESEND_API_KEY")
+
+SITE_NAME = "ToolsMetric"
+SITE_EMAIL = "onboarding@resend.dev"  # change after domain verification
+ADMIN_EMAIL = "support@toolsmetric.com"
 
 # Email Configuration
 # SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.hostinger.com')
@@ -17,11 +20,7 @@ logger = logging.getLogger(__name__)
 # SITE_NAME = "ToolsMetric"
 # SITE_URL = "https://toolsmetric.com"
 
-SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.gmail.com')
-SMTP_PORT = int(os.environ.get('SMTP_PORT', 465))
-SMTP_EMAIL = os.environ.get('SMTP_EMAIL', 'adifact67@gmail.com')
-SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', 'Aditya@2840')
-ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'adifact67@gmail.com')
+
 SITE_NAME = "ToolsMetric"
 SITE_URL = "https://toolsmetric.com"
 
@@ -38,30 +37,13 @@ SITE_URL = "https://toolsmetric.com"
 
 
 def send_email(to_email: str, subject: str, html_content: str, plain_content: Optional[str] = None) -> bool:
-    """Send an email using SMTP with SSL"""
     try:
-        msg = MIMEMultipart('alternative')
-        msg['Subject'] = subject
-        msg['From'] = f"{SITE_NAME} <{SMTP_EMAIL}>"
-        msg['To'] = to_email
-
-        # Plain text version
-        if plain_content:
-            part1 = MIMEText(plain_content, 'plain')
-            msg.attach(part1)
-
-        # HTML version
-        part2 = MIMEText(html_content, 'html')
-        msg.attach(part2)
-
-        # Create SSL context
-        context = ssl.create_default_context()
-
-        
-        # Connect and send
-        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=context) as server:
-            server.login(SMTP_EMAIL, SMTP_PASSWORD)
-            server.sendmail(SMTP_EMAIL, to_email, msg.as_string())
+        resend.Emails.send({
+            "from": f"{SITE_NAME} <{SITE_EMAIL}>",
+            "to": [to_email],
+            "subject": subject,
+            "html": html_content,
+        })
 
         logger.info(f"Email sent successfully to {to_email}")
         return True
@@ -69,7 +51,6 @@ def send_email(to_email: str, subject: str, html_content: str, plain_content: Op
     except Exception as e:
         logger.error(f"Failed to send email to {to_email}: {str(e)}")
         return False
-
 
 # Email Templates
 
