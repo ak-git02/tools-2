@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 # Email Configuration
 SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.hostinger.com')
-SMTP_PORT = int(os.environ.get('SMTP_PORT', 465))
+SMTP_PORT = int(os.environ.get('SMTP_PORT', 587))
 SMTP_EMAIL = os.environ.get('SMTP_EMAIL', 'support@toolsmetric.com')
 SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '&l~yrU@k8=Y')
 ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'support@toolsmetric.com')
