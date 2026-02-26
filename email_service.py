@@ -5,7 +5,7 @@ import resend
 
 logger = logging.getLogger(__name__)
 
-resend.api_key = os.environ.get("re_gAK815Eb_4hTagqnU9uHCMJR5rHmrU3km")
+resend.api_key = os.environ.get("RESEND_API_KEY")
 
 SITE_NAME = "ToolsMetric"
 SITE_EMAIL = "onboarding@resend.dev"  # change after domain verification
