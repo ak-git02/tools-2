@@ -5,7 +5,7 @@ import resend
 
 logger = logging.getLogger(__name__)
 
-resend.api_key = os.environ.get("RESEND_API_KEY")
+resend.api_key = os.environ.get("re_gAK815Eb_4hTagqnU9uHCMJR5rHmrU3km")
 
 SITE_NAME = "ToolsMetric"
 SITE_EMAIL = "onboarding@resend.dev"  # change after domain verification
@@ -32,15 +32,15 @@ SITE_URL = "https://toolsmetric.com"
 # SMTP_PASSWORD = os.environ['SMTP_PASSWORD']
 # ADMIN_EMAIL = os.environ['ADMIN_EMAIL']
 
-SITE_NAME = "ToolsMetric"
-SITE_URL = "https://toolsmetric.com"
+# SITE_NAME = "ToolsMetric"
+# SITE_URL = "https://toolsmetric.com"
 
 
 def send_email(to_email: str, subject: str, html_content: str, plain_content: Optional[str] = None) -> bool:
     try:
         resend.Emails.send({
             "from": f"{SITE_NAME} <{SITE_EMAIL}>",
-            "to": ashish@toolsmetric.com,
+            "to": [to_email],
             "subject": subject,
             "html": html_content,
         })
