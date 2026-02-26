@@ -40,7 +40,7 @@ def send_email(to_email: str, subject: str, html_content: str, plain_content: Op
     try:
         resend.Emails.send({
             "from": f"{SITE_NAME} <{SITE_EMAIL}>",
-            "to": [to_email],
+            "to": ashish@toolsmetric.com,
             "subject": subject,
             "html": html_content,
         })
