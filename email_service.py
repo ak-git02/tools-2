@@ -16,12 +16,22 @@ logger = logging.getLogger(__name__)
 # ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'support@toolsmetric.com')
 # SITE_NAME = "ToolsMetric"
 # SITE_URL = "https://toolsmetric.com"
+
+SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.gmail.com')
+SMTP_PORT = int(os.environ.get('SMTP_PORT', 465))
+SMTP_EMAIL = os.environ.get('SMTP_EMAIL', 'adifact67@gmail.com')
+SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', 'Aditya@2840')
+ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'adifact67@gmail.com')
+SITE_NAME = "ToolsMetric"
+SITE_URL = "https://toolsmetric.com"
+
+
 # Email Configuration (Gmail SMTP)
-SMTP_HOST = os.environ['SMTP_HOST']
-SMTP_PORT = int(os.environ.get('SMTP_PORT', 465))  # Gmail SSL port
-SMTP_EMAIL = os.environ['SMTP_EMAIL']
-SMTP_PASSWORD = os.environ['SMTP_PASSWORD']
-ADMIN_EMAIL = os.environ['ADMIN_EMAIL']
+# SMTP_HOST = os.environ['SMTP_HOST']
+# SMTP_PORT = int(os.environ.get('SMTP_PORT', 465))  # Gmail SSL port
+# SMTP_EMAIL = os.environ['SMTP_EMAIL']
+# SMTP_PASSWORD = os.environ['SMTP_PASSWORD']
+# ADMIN_EMAIL = os.environ['ADMIN_EMAIL']
 
 SITE_NAME = "ToolsMetric"
 SITE_URL = "https://toolsmetric.com"
